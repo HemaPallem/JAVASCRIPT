@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Grade Calculator</h1>
+        <form>
+            <table>
+                <tr>
+                    <th>Subject</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td><label for="telugu">Telugu</label></td>
+                    <td><input type="text" id="telugu" name="telugu" list="grades"></td>
+                </tr>
+                <tr>
+                    <td><label for="maths">Maths</label></td>
+                    <td><input type="text" id="maths" name="maths" list="grades"></td>
+                </tr>
+                <tr>
+                    <td><label for="english">English</label></td>
+                    <td><input type="text" id="english" name="english" list="grades"></td>
+                </tr>
+                <tr>
+                    <td><label for="science">Science</label></td>
+                    <td><input type="text" id="science" name="science" list="grades"></td>
+                </tr>
+            </table>
+            <datalist id="grades">
+                <option value="Ex">Ex</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </datalist>
+            <button type="button" onclick="calculateGrades()">Calculate Grades</button>
+        </form>
+        <p class="result">Grade Points: <span id="gradePoints">-</span></p>
+    </main>
+
+    <script>
+        function calculateGrades() {
+            const gradePointsMap = {
+                'Ex': 10,
+                'A': 9,
+                'B': 8,
+                'C': 7,
+                'D': 6,
+                'F': 0
+            };
+
+            const teluguGrade = document.getElementById('telugu').value;
+            const mathsGrade = document.getElementById('maths').value;
+            const englishGrade = document.getElementById('english').value;
+            const scienceGrade = document.getElementById('science').value;
+            
+            const overallGradePoints = (
+                gradePointsMap[teluguGrade] +
+                gradePointsMap[mathsGrade] +
+                gradePointsMap[englishGrade] +
+                gradePointsMap[scienceGrade]
+            );
+
+            document.getElementById('gradePoints').textContent = overallGradePoints;
+        }
+    </script>
+</body>
+</html>
